@@ -12,6 +12,12 @@ export function Menu(){
     function handleThemeChange(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>){
         e.preventDefault();
         console.log('Clicado', Date.now())
+
+        setTheme(prevTheme => {
+            const nextTheme = prevTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nextTheme);
+            return nextTheme;
+        })
     }
 
     return (

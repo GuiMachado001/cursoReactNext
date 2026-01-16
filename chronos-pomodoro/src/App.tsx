@@ -7,14 +7,25 @@ import { Cycles } from './components/Cycles';
 import { DefaultButton } from './components/DefaultButton';
 import { Footer } from './components/Footer';
 
+import { PlayCircleIcon } from 'lucide-react';
 
 import './styles/theme.css';
 import './styles/global.css';
-import { PlayCircleIcon } from 'lucide-react';
+import { Heading } from './components/Heading';
 
 export function App(){
+  let numero = 0;
+
+  function handleClick(){
+    numero += 1;
+    console.log(numero)
+  }
+
   return(
     <>
+    <Heading>Numero:{numero}</Heading>
+    <button onClick={handleClick}>Aumenta</button>
+
       <Container>
         <Logo />
       </Container>
@@ -33,7 +44,7 @@ export function App(){
             <DefaultInput 
               type='text' 
               id='input' 
-              labelText='Task'
+              labelText= {numero.toString()}
               placeholder='Digite Algo'
             />
           </div>

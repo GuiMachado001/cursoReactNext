@@ -1,12 +1,20 @@
-import { HistoryIcon, HouseIcon, SettingsIcon, SunIcon } from 'lucide-react';
+import { HistoryIcon, HouseIcon, MoonIcon, SettingsIcon, SunIcon } from 'lucide-react';
 import styles from './Style.module.css';
 
 import { useState, useEffect } from 'react';
 
-type AvailableTheme = 'dark' | 'light';
+type AvailableThemes = 'dark' | 'light';
 
 export function Menu(){
-    const [ theme, setTheme] = useState<AvailableTheme>('dark');
+    const [ theme, setTheme] = useState<AvailableThemes>(() => {
+        const storageTheme = localStorage.getItem('theme') as AvailableThemes || 'dark';
+        return storageTheme;
+    });
+
+    const nextThemeIcon = {
+        dark: <SunIcon />,
+        light: <MoonIcon />,
+    }
 
 
     function handleThemeChange(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>){
@@ -17,28 +25,14 @@ export function Menu(){
         });
     }
 
-
-
-    // useEffect(() =>{
-    //    console.log('useEffect sem dependencia', Date.now());
-    // }) //Executado toda vez que o componente renderiza na tela
-
-    // useEffect(() =>{
-    //     console.log('useEffect com array de deps vazio', Date.now());
-    // }, []) // Executa apenas quando o react monta  ocomponente na tela pela primeira vez
-
     useEffect(() =>{
-        console.log('theme mudou', theme, Date.now());
         document.documentElement.setAttribute('data-theme', theme);
-
-        return () =>{
-        }
-    }, [theme]) //executa apenas quando o valor de theme muda
+        localStorage.setItem('theme', theme)
+    }, [theme]) 
 
 
     return (
     <nav className={styles.menu}>
-        <h1>{theme}</h1>
         <a href="#" className={styles.menuLink} aria-label='Home' title='Home'>
             <HouseIcon />
         </a>
@@ -49,7 +43,7 @@ export function Menu(){
             <SettingsIcon />
         </a>
         <a href="#" className={styles.menuLink} aria-label='Tema' title='Tema' onClick={handleThemeChange}>
-            <SunIcon />
+            {nextThemeIcon[theme]}
         </a>
     </nav>
     )

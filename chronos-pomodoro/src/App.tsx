@@ -11,26 +11,13 @@ import { PlayCircleIcon } from 'lucide-react';
 
 import './styles/theme.css';
 import './styles/global.css';
-import { Heading } from './components/Heading';
 
-import { useState } from 'react';
 
 export function App(){
-  // const [numero, setNumero] = useState(() =>{
-  //   console.log("lazy inicialization");
-  //   return 0;
-  // });
 
-  const [ numero, setNumero ] = useState(0);
-
-  function handleClick(){
-    setNumero(prevState => prevState + 1);
-  }
 
   return(
     <>
-    <Heading>Numero:{numero}</Heading>
-    <button onClick={handleClick}>Aumenta</button>
 
       <Container>
         <Logo />
@@ -50,7 +37,7 @@ export function App(){
             <DefaultInput 
               type='text' 
               id='input' 
-              labelText= {numero.toString()}
+              labelText= 'task'
               placeholder='Digite Algo'
             />
           </div>

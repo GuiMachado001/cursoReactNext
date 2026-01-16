@@ -1,11 +1,11 @@
 import styles from './styles.module.css';
 
-type DefaultInpitProps = {
+type DefaultInputProps = {
     id: string;
     labelText?: string;
 } & React.ComponentProps<'input'>;
 
-export function DefaultInput({ id, type, labelText, ...rest }: DefaultInpitProps){
+export function DefaultInput({ id, type, labelText, ...rest }: DefaultInputProps){
     return(
         <>
             {/* {if ? 'verdadeiro' : 'Falso'} */}

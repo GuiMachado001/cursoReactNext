@@ -29,6 +29,7 @@ export function App(){
               type='text' 
               id='input' 
               labelText='Task'
+              placeholder='Digite Algo'
             />
           </div>
 

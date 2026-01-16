@@ -13,12 +13,18 @@ import './styles/theme.css';
 import './styles/global.css';
 import { Heading } from './components/Heading';
 
+import { useState } from 'react';
+
 export function App(){
-  let numero = 0;
+  // const [numero, setNumero] = useState(() =>{
+  //   console.log("lazy inicialization");
+  //   return 0;
+  // });
+
+  const [ numero, setNumero ] = useState(0);
 
   function handleClick(){
-    numero += 1;
-    console.log(numero)
+    setNumero(prevState => prevState + 1);
   }
 
   return(
